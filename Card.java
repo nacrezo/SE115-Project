@@ -1,14 +1,19 @@
 public class Card {
-	private String face;
-	private String suit;
+	private String faces;
+	private String suits;
 	
 	public Card(String a, String b) {
-		face = a;
-		suit = b;
+		faces = a;
+		suits = b;
 	}
+	public String getA() {return faces;}
+	public void setA(String a) {faces = a;}
 	
-	public String toString(){
-		return face + " Of " + suit;
+	public String getB() {return suits;}
+	public void setB(String b) {suits = b;}
+	
+	public String toPrint(){
+		return faces + "of" + suits;
 	}
 }
 		

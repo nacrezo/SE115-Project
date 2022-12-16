@@ -10,7 +10,7 @@ public class DeckOfCards {
 		
 		String[] faces = { "A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K" };
 		
-		String[] suits = { "Hearths", "Diamonds", "Clubs", "Spades" };
+		String[] suits = { "u0003", "u0004", "u0005", "u0006" };
 		
         deck = new Card[52];
        
