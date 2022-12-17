@@ -1,4 +1,5 @@
 import java.util.Random;
+import java.util.Scanner;
 
 public class DeckOfCards {
 	Random r = new Random();
@@ -31,6 +32,22 @@ public class DeckOfCards {
 		   deck[second_card] = temp_card;
 	    }
 	}
+	
+	public void cut() {
+		
+		Scanner sc = new Scanner(System.in);
+		int cutPoint = sc.nextInt();
+		
+		for(int i = 0; i < deck.length - cutPoint; i++) {
+			deck[i] = deck[cutPoint + i];
+		}
+		
+		for(int i = 0; i < cutPoint; i++) {
+			deck[52 - cutPoint + i] = deck[i];
+			deck[i] = null;
+		}
+	}
+		
 	
 	public Card dealCard() {
 		if(current_card < deck.length) {
