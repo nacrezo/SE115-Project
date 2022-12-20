@@ -7,8 +7,11 @@ public class Card {
 		suit = b;
 	}
 	
+	public String getA() { return face; }
+	public String getB() { return suit; }
+	
 	public String toString(){
-		return face + " Of " + suit;
+		return face + suit;
 	}
 }
 		
