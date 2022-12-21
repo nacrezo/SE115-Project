@@ -6,6 +6,9 @@ public class DeckOfCards {
 	
 	public static Card[] deck;
 	public static Card[] cuttedDeck = new Card[52];
+	public static Card[] user = new Card[4];
+	public static Card[] opponent = new Card[4];
+	
 
 	public DeckOfCards() {
 		
@@ -56,7 +59,7 @@ public class DeckOfCards {
 			Card[] user = new Card[4];
 			
 			for(int i = 0; i < 4; i++) {
-				user[i] = deck[i];
+				user[i] = cuttedDeck[i];
 			}
 			
 			return user;
@@ -66,7 +69,7 @@ public class DeckOfCards {
 			Card[] opponent = new Card[4];
 			
 			for(int i = 4; i < 8; i++) {
-				opponent[i-4] = deck[i];
+				opponent[i-4] = cuttedDeck[i];
 			}
 			
 			return opponent;
