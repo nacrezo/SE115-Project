@@ -1,8 +1,9 @@
 import java.util.Random;
 
 public class Board {
+	
+	DeckOfCards deckOfCards = new DeckOfCards();
 
-    private Random r = new Random();
     public Card[] dealBoard() {
     Card[] board = new Card[4];
 
@@ -12,18 +13,17 @@ public class Board {
         return board;
     }
 
-    public Card[] throwUser(int chosen_card) {
+    public Card[] throwUser(int choice) {
         Card[] throw_user = new Card[4];
 
-        throw_user[0] = DeckOfCards.user[chosen_card-1];
+        throw_user[0] = deckOfCards.dealUser()[choice-1];
         return throw_user;
     }
 
-    public Card[] throwOpponent(int random_card) {
-        random_card = r.nextInt(4);
+    public Card[] throwOpponent(int random) {
         Card[] throw_opponent = new Card[4];
 		
-        throw_opponent[0] = DeckOfCards.opponent[random_card];
+        throw_opponent[0] = deckOfCards.dealOpponent()[random];
         return throw_opponent;
     }
 }

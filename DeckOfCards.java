@@ -45,36 +45,45 @@ public class DeckOfCards {
 		}
 	}
 		
-		public Card[] seeDeck() {
-			Card[] decks = new Card[52];
-			
-			for(int i = 0; i < 52; i++) {
-				decks[i] = deck[i];
-			}
-			
-			return decks;
-		}
-		
 		public Card[] dealUser() {
-			Card[] user = new Card[4];
-			
-			for(int i = 0; i < 4; i++) {
-				user[i] = cuttedDeck[i];
-			}
-			
-			return user;
-		}
+        Card[] user = new Card[4];
+
+        for(int a = 0; a < 1; a++) {
+            for (int i = 0; i < 8; i++) {
+                if (i==0) {
+                    user[a] = cuttedDeck[i];
+                } else if (i==2) {
+                    user[a+1] = cuttedDeck[i];
+                } else if (i==4) {
+                    user[a+2] = cuttedDeck[i];
+                } else if (i==6) {
+                    user[a+3] = cuttedDeck[i];
+                }
+            }
+        }
+        return user;
+    }
 		
 		public Card[] dealOpponent() {
-			Card[] opponent = new Card[4];
-			
-			for(int i = 4; i < 8; i++) {
-				opponent[i-4] = cuttedDeck[i];
-			}
-			
-			return opponent;
-		}
+        Card[] opponent = new Card[4];
+
+        for(int a = 0; a < 1; a++) {
+            for (int i = 0; i < 8; i++) {
+                if (i == 1) {
+                    opponent[a] = cuttedDeck[i];
+                } else if (i == 3) {
+                    opponent[a + 1] = cuttedDeck[i];
+                } else if (i == 5) {
+                    opponent[a + 2] = cuttedDeck[i];
+                } else if (i == 7) {
+                    opponent[a + 3] = cuttedDeck[i];
+                }
+            }
+        }
+
+        return opponent;
     }
+}
   
 		   
 	
