@@ -1,29 +1,31 @@
-import java.util.Random;
-
 public class Board {
-	
-	DeckOfCards deckOfCards = new DeckOfCards();
+
+    DeckOfCards deckOfCards = new DeckOfCards();
 
     public Card[] dealBoard() {
-    Card[] board = new Card[4];
+        Card[] board = new Card[4];
 
-        for(int i = 8; i < 12; i++) {
-            board[i-8] = DeckOfCards.cuttedDeck[i];
+        for(int i = 0; i < 4; i++) {
+            board[i] = DeckOfCards.cuttedDeck[i];
         }
         return board;
     }
 
     public Card[] throwUser(int choice) {
-        Card[] throw_user = new Card[4];
+        Card[] throw_user = new Card[24];
 
-        throw_user[0] = deckOfCards.dealUser()[choice-1];
+        for (int i = 0; i < 4; i++) {
+            throw_user[i] = deckOfCards.dealUser(1)[choice - 1];
+        }
         return throw_user;
     }
 
     public Card[] throwOpponent(int random) {
-        Card[] throw_opponent = new Card[4];
-		
-        throw_opponent[0] = deckOfCards.dealOpponent()[random];
+        Card[] throw_opponent = new Card[24];
+
+        for (int i = 0; i < 4; i++) {
+            throw_opponent[i] = deckOfCards.dealOpponent(1)[random];
+        }
         return throw_opponent;
     }
 }
