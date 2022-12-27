@@ -13,4 +13,4 @@ public class Card {
     public String toString(){
         return suit + face;
     }
-}	
+}

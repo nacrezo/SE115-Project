@@ -6,8 +6,8 @@ public class DeckOfCards {
 
     public static Card[] deck;
     public static Card[] cuttedDeck = new Card[52];
-    public static Card[] user = new Card[4];
-    public static Card[] opponent = new Card[4];
+    public static Card[] user = new Card[24];
+    public static Card[] opponent = new Card[24];
 
 
     public DeckOfCards() {
@@ -21,10 +21,6 @@ public class DeckOfCards {
         for(int i = 0; i<deck.length; i++) {
             deck[i] = new Card(faces[i%13], suits[i/13]);
         }
-    }
-
-    public Card[] getDeck() {
-        return deck;
     }
 
     public void shuffle() {
@@ -54,10 +50,11 @@ public class DeckOfCards {
         for (int i = 0; i < 4; i++) {
             user[i] = cuttedDeck[2*i+4+(round-1)*8];
         }
+
         return user;
     }
 
-        public Card[] dealOpponent (int round) {
+        public Card[] dealOpponent(int round) {
 
             for (int i = 0; i < 4; i++) {
                 opponent[i] = cuttedDeck[2*i+5+(round-1)*8];
@@ -66,6 +63,5 @@ public class DeckOfCards {
             return opponent;
         }
     }
-
 		   
 	
