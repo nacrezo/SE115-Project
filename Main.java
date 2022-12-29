@@ -7,8 +7,9 @@ public class Main {
         Random r = new Random();
         DeckOfCards deckOfCards = new DeckOfCards();
         Board boards = new Board();
-        int num_choice;
+        int num_choice = 0;
         int random_num = r.nextInt(4);
+        int cutPoint;
 
         deckOfCards.shuffle();
         for (int i = 0; i < 52; i++) {
@@ -16,18 +17,20 @@ public class Main {
         }
         System.out.println();
 
-        while (true) {
+        boolean a = true;
+        while (a) {
             System.out.println(" Enter a cut point (1-52) ");
             try {
-                int cutPoint = sc.nextInt();
+                String name = sc.nextLine();
+                cutPoint = Integer.parseInt(name);
                 deckOfCards.cut(cutPoint);
+                a = false;
 
             } catch (Exception e) {
                 System.err.println("error !");
-                continue;
             }
-            break;
         }
+
         System.out.println("Complete deck:");
 
         for (int i = 0; i < 52; i++) {
@@ -35,71 +38,361 @@ public class Main {
         }
 
         System.out.println(" ");
+        System.out.println("User's cards:");
+        deckOfCards.setUser(deckOfCards.dealUser(1));
+        for (int i = 0; i < 4; i++) {
+            System.out.println(deckOfCards.getUser()[i].toString());
+        }
+
         System.out.println("Cards on board:");
 
         for (int i = 0; i < 4; i++) {
             System.out.println(boards.dealBoard()[i]);
         }
 
-        for (int round = 1; round < 7; round++) {
+            for (int i = 4; i < 12; i++) {
+
+                if (i % 2 == 0) {
+                    boolean b = true;
+                    while (b) {
+                        System.out.println("Choose a card to throw (1-4)");
+                        try {
+                            String name = sc.nextLine();
+                            num_choice = Integer.parseInt(name);
+                            System.out.println(deckOfCards.dealUser(1)[num_choice - 1]);
+                            b = false;
+
+                        } catch (Exception e) {
+                            System.err.println("error !");
+                        }
+                    }
+                }
+
+                if (i % 2 != 0) {
+                    System.out.println("Opponent is choosing a card...");
+                    random_num = r.nextInt(4);
+                    System.out.println(deckOfCards.dealOpponent(1)[random_num]);
+                }
+
+                /* if (i % 2 == 0) {
+                    if (deckOfCards.dealUser(1)[num_choice - 1].getFace().equals(boards.board(num_choice, random_num)[0].getFace())) {
+                        for (int j = 0; j < i + 1; j++) {
+                            boards.accumulated_cards_user[j] = boards.board(num_choice, random_num)[j];
+                        }
+                        System.out.println("Cards on board:");
+                        System.out.println(boards.board[i + 1]);
+
+                    } else {
+                        System.out.println("Cards on board:");
+                        for (int j = 0; j < i + 1; j++) {
+                            System.out.println(boards.board[j]);
+                        }
+                    }
+                }
+                */
+                if (i % 2 == 0) {
+                    boards.board[i] = deckOfCards.dealUser(1)[num_choice - 1];
+                } else {
+                    boards.board[i] = deckOfCards.dealOpponent(1)[random_num];
+                }
+            }
 
             System.out.println("User's cards:");
+            deckOfCards.setUser(deckOfCards.dealUser(2));
+            for (int i = 0; i < 4; i++) {
+                System.out.println(deckOfCards.getUser()[i].toString());
+            }
+
 
             for (int i = 0; i < 4; i++) {
-                System.out.println(deckOfCards.dealUser(round)[i]);
+                deckOfCards.setOpponent(deckOfCards.dealOpponent(2));
             }
 
-            System.out.println("Opponent's cards:");
+            for (int i = 12; i < 20; i++) {
+
+                boolean c = true;
+                while (c) {
+                    System.out.println("Choose a card to throw (1-4)");
+                    try {
+                        String name = sc.nextLine();
+                        num_choice = Integer.parseInt(name);
+                        System.out.println(deckOfCards.dealUser(2)[num_choice - 1]);
+                        c = false;
+
+                    } catch (Exception e) {
+                        System.err.println("error !");
+                    }
+                }
+
+                if (i % 2 != 0) {
+                    System.out.println("Opponent is choosing a card...");
+                    random_num = r.nextInt(4);
+                    System.out.println(deckOfCards.dealOpponent(2)[random_num]);
+                }
+
+                /*
+                if (i % 2 == 0) {
+                    if (deckOfCards.dealUser(2)[num_choice - 1].getFace().equals(boards.board(num_choice, random_num)[0].getFace())) {
+                        for (int j = 12; j < i + 1; j++) {
+                            boards.accumulated_cards_user[j] = boards.board(num_choice, random_num)[j];
+                        }
+                        System.out.println("Cards on board:");
+                        System.out.println(boards.board[i + 1]);
+
+                    } else {
+                        System.out.println("Cards on board:");
+                        for (int j = 0; j < i + 1; j++) {
+                            System.out.println(boards.board[j]);
+                        }
+                    }
+                }
+                 */
+
+                if (i%2==0) {
+                    boards.board[i] = deckOfCards.dealUser(2)[num_choice-1];
+                } else {
+                    boards.board[i] = deckOfCards.dealOpponent(2)[random_num];
+                }
+            }
+
+            System.out.println("User's cards:");
+            deckOfCards.setUser(deckOfCards.dealUser(3));
+            for (int i = 0; i < 4; i++) {
+            System.out.println(deckOfCards.getUser()[i].toString());
+            }
+
 
             for (int i = 0; i < 4; i++) {
-                System.out.println(deckOfCards.dealOpponent(round)[i]);
+            deckOfCards.setOpponent(deckOfCards.dealOpponent(3));
             }
 
-            System.out.println("Choose a card to throw (1-4)");
-            num_choice = sc.nextInt();
-            System.out.println(deckOfCards.dealUser(round)[num_choice - 1]);
+            for (int i = 20; i < 28; i++) {
 
+                boolean d = true;
+                while (d) {
+                    System.out.println("Choose a card to throw (1-4)");
+                    try {
+                        String name = sc.nextLine();
+                        num_choice = Integer.parseInt(name);
+                        System.out.println(deckOfCards.dealUser(4)[num_choice - 1]);
+                        d = false;
 
-            for (int i = 4; i < boards.board.length; i++) {
-                boards.throwUser(num_choice);
-            }
-
-
-                if (deckOfCards.dealUser(round)[num_choice - 1].getFace().equals(boards.board[0].getFace())) {
-                    for (int i = 0; i < boards.board.length; i++) {
-                        boards.accumulated_cards_user[i] = boards.board[i];
-                        System.out.print(boards.accumulated_cards_user[i]);
+                    } catch (Exception e) {
+                        System.err.println("error !");
                     }
                 }
 
-                if (deckOfCards.dealUser(round)[num_choice - 1].getFace().equals("J")) {
-                    for (int i = 0; i < boards.board.length; i++) {
-                        boards.accumulated_cards_user[i] = boards.board[i];
-                    }
+                if (i % 2 != 0) {
+                    System.out.println("Opponent is choosing a card...");
+                    random_num = r.nextInt(4);
+                    System.out.println(deckOfCards.dealOpponent(3)[random_num]);
                 }
 
-                System.out.println("Cards on board:");
+                /*
+                if (i % 2 == 0) {
+                    if (deckOfCards.dealUser(3)[num_choice - 1].getFace().equals(boards.board(num_choice, random_num)[0].getFace())) {
+                        for (int j = 20; j < i + 1; j++) {
+                            boards.accumulated_cards_user[j] = boards.board(num_choice, random_num)[j];
+                        }
+                        System.out.println("Cards on board:");
+                        System.out.println(boards.board[i + 1]);
 
-                for (int i = boards.board.length - 1; i > -1; i--) {
-                    System.out.println(boards.board[i]);
-                }
-
-                System.out.println("Opponent is choosing a card...");
-                random_num = r.nextInt(4);
-                System.out.println(deckOfCards.dealOpponent(round)[random_num]);
-
-                if (deckOfCards.dealOpponent(round)[random_num].getFace().equals(boards.board[0].getFace())) {
-                    for (int i = 0; i < boards.board.length; i++) {
-                        boards.accumulated_cards_opponent[i] = boards.board[i];
-                        System.out.print(boards.accumulated_cards_opponent[i]);
+                    } else {
+                        System.out.println("Cards on board:");
+                        for (int j = 0; j < i + 1; j++) {
+                            System.out.println(boards.board[j]);
+                        }
                     }
+                }
+                */
+
+                if (i%2==0) {
+                    boards.board[i] = deckOfCards.dealUser(3)[num_choice-1];
+                } else {
+                    boards.board[i] = deckOfCards.dealOpponent(3)[random_num];
+                }
             }
 
-            System.out.println("Cards on board:");
+                System.out.println("User's cards:");
+                deckOfCards.setUser(deckOfCards.dealUser(4));
+                for (int i = 0; i < 4; i++) {
+                System.out.println(deckOfCards.getUser()[i].toString());
+                }
 
-            for (int i = boards.board.length; i > -1; i--) {
-                System.out.println(boards.board[i]);
+
+                for (int i = 0; i < 4; i++) {
+                deckOfCards.setOpponent(deckOfCards.dealOpponent(4));
+                }
+
+                for (int i = 28; i < 36; i++) {
+
+                boolean f = true;
+                while (f) {
+                    System.out.println("Choose a card to throw (1-4)");
+                    try {
+                        String name = sc.nextLine();
+                        num_choice = Integer.parseInt(name);
+                        System.out.println(deckOfCards.dealUser(1)[num_choice - 1]);
+                        f = false;
+
+                    } catch (Exception e) {
+                        System.err.println("error !");
+                    }
+                }
+
+                if (i % 2 != 0) {
+                    System.out.println("Opponent is choosing a card...");
+                    random_num = r.nextInt(4);
+                    System.out.println(deckOfCards.dealOpponent(4)[random_num]);
+                }
+
+                /*
+                if (i % 2 == 0) {
+                    if (deckOfCards.dealUser(4)[num_choice - 1].getFace().equals(boards.board(num_choice, random_num)[0].getFace())) {
+                        for (int j = 28; j < i + 1; j++) {
+                            boards.accumulated_cards_user[j] = boards.board(num_choice, random_num)[j];
+                        }
+                        System.out.println("Cards on board:");
+                        System.out.println(boards.board[i + 1]);
+
+                    } else {
+                        for (int j = 0; j < i + 1; j++) {
+                            System.out.println(boards.board[j]);
+                        }
+                    }
+                }
+                */
+
+                if (i%2==0) {
+                    boards.board[i] = deckOfCards.dealUser(4)[num_choice-1];
+                } else {
+                    boards.board[i] = deckOfCards.dealOpponent(4)[random_num];
+                }
+            }
+
+                System.out.println("User's cards:");
+                deckOfCards.setUser(deckOfCards.dealUser(5));
+                for (int i = 0; i < 4; i++) {
+                System.out.println(deckOfCards.getUser()[i].toString());
+                }
+
+
+                for (int i = 0; i < 4; i++) {
+                deckOfCards.setOpponent(deckOfCards.dealOpponent(5));
+                }
+
+                for (int i = 36; i < 44; i++) {
+
+                boolean g = true;
+                while (g) {
+                    System.out.println("Choose a card to throw (1-4)");
+                    try {
+                        String name = sc.nextLine();
+                        num_choice = Integer.parseInt(name);
+                        System.out.println(deckOfCards.dealUser(5)[num_choice - 1]);
+                        g = false;
+
+                    } catch (Exception e) {
+                        System.err.println("error !");
+                    }
+                }
+
+                if (i % 2 != 0) {
+                    System.out.println("Opponent is choosing a card...");
+                    random_num = r.nextInt(4);
+                    System.out.println(deckOfCards.dealOpponent(5)[random_num]);
+                }
+
+                /*
+                if (i % 2 == 0) {
+                    if (deckOfCards.dealUser(5)[num_choice - 1].getFace().equals(boards.board(num_choice, random_num)[0].getFace())) {
+                        for (int j = 36; j < i + 1; j++) {
+                            boards.accumulated_cards_user[j] = boards.board(num_choice, random_num)[j];
+                        }
+                        System.out.println("Cards on board:");
+                        System.out.println(boards.board[i + 1]);
+
+                    } else {
+                        System.out.println("Cards on board:");
+                        for (int j = 0; j < i + 1; j++) {
+                            System.out.println(boards.board[j]);
+                        }
+                    }
+                }
+                 */
+
+                if (i%2==0) {
+                    boards.board[i] = deckOfCards.dealUser(5)[num_choice-1];
+                } else {
+                    boards.board[i] = deckOfCards.dealOpponent(5)[random_num];
+                }
+            }
+
+                System.out.println("User's cards:");
+                deckOfCards.setUser(deckOfCards.dealUser(6));
+                for (int i = 0; i < 4; i++) {
+                System.out.println(deckOfCards.getUser()[i].toString());
+                }
+
+
+                for (int i = 0; i < 4; i++) {
+                    deckOfCards.setOpponent(deckOfCards.dealOpponent(6));
+                }
+
+            for (int i = 44; i < 52; i++) {
+
+                boolean k = true;
+                while (k) {
+                    System.out.println("Choose a card to throw (1-4)");
+                    try {
+                        String name = sc.nextLine();
+                        num_choice = Integer.parseInt(name);
+                        System.out.println(deckOfCards.dealUser(6)[num_choice - 1]);
+                        k = false;
+
+                    } catch (Exception e) {
+                        System.err.println("error !");
+                    }
+                }
+
+                if (i % 2 != 0) {
+                    System.out.println("Opponent is choosing a card...");
+                    random_num = r.nextInt(4);
+                    System.out.println(deckOfCards.dealOpponent(6)[random_num]);
+                }
+
+                /*
+                if (i % 2 == 0) {
+                    if (deckOfCards.dealUser(6)[num_choice - 1].getFace().equals(boards.board(num_choice, random_num)[0].getFace())) {
+                        for (int j = 44; j < i + 1; j++) {
+                            boards.accumulated_cards_user[j] = boards.board(num_choice, random_num)[j];
+                        }
+                        System.out.println("Cards on board:");
+                        System.out.println(boards.board[i + 1]);
+
+                    } else {
+                        System.out.println("Cards on board:");
+                        for (int j = 0; j < i + 1; j++) {
+                            System.out.println(boards.board[j]);
+                        }
+                    }
+                }
+                 */
+
+                if (i%2==0) {
+                    boards.board[i] = deckOfCards.dealUser(6)[num_choice-1];
+                } else {
+                    boards.board[i] = deckOfCards.dealOpponent(6)[random_num];
+                }
+            }
+
+                System.out.println("User's point:");
+                System.out.println(boards.userPoint(boards.accumulated_cards_user));
+
+
+                System.out.println("Opponent's point:");
+                System.out.println(boards.opponentPoint(boards.accumulated_cards_opponent));
+
+                System.out.println("Game Over !");
             }
         }
-    }
-}

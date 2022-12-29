@@ -9,6 +9,37 @@ public class DeckOfCards {
     public static Card[] user = new Card[24];
     public static Card[] opponent = new Card[24];
 
+    public static Card[] getDeck() {
+        return deck;
+    }
+
+    public static void setDeck(Card[] deck) {
+        DeckOfCards.deck = deck;
+    }
+
+    public static Card[] getCuttedDeck() {
+        return cuttedDeck;
+    }
+
+    public static void setCuttedDeck(Card[] cuttedDeck) {
+        DeckOfCards.cuttedDeck = cuttedDeck;
+    }
+
+    public static Card[] getUser() {
+        return user;
+    }
+
+    public static void setUser(Card[] user) {
+        DeckOfCards.user = user;
+    }
+
+    public static Card[] getOpponent() {
+        return opponent;
+    }
+
+    public static void setOpponent(Card[] opponent) {
+        DeckOfCards.opponent = opponent;
+    }
 
     public DeckOfCards() {
 
