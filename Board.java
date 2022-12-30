@@ -71,7 +71,7 @@ public class Board {
 
         for (int i = 0; i < accumulated_cards_user.length; i++) {
             if (accumulated_cards_user[i] == null) {
-                continue;
+                break;
             } else if (accumulated_cards_user[i].getFace().equals("2") && accumulated_cards_user[i].getSuit().equals("♣")) {
                 user_point += 2;
             } else if (accumulated_cards_user[i].getFace().equals("2") && accumulated_cards_user[i].getSuit().equals("♦")) {
@@ -88,7 +88,7 @@ public class Board {
 
         for (int i = 0; i < accumulated_cards_opponent.length; i++) {
             if (accumulated_cards_opponent[i] == null) {
-                continue;
+                break;
             } else if (accumulated_cards_opponent[i].getFace().equals("2") && accumulated_cards_opponent[i].getSuit().equals("♣")) {
                 opponent_point += 2;
             } else if (accumulated_cards_opponent[i].getFace().equals("10") && accumulated_cards_opponent[i].getSuit().equals("♦")) {
